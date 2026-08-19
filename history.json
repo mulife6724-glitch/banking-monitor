@@ -1,0 +1,37 @@
+[
+  {
+    "date": "2026-08-19",
+    "sufficiency": 0.0,
+    "indices": {
+      "personal": {
+        "raw": 50.0,
+        "robust": 50.0,
+        "prev_raw": null,
+        "delta": null,
+        "status": "NEUTRAL"
+      },
+      "corporate": {
+        "raw": 50.0,
+        "robust": 50.0,
+        "prev_raw": null,
+        "delta": null,
+        "status": "NEUTRAL"
+      },
+      "bank_risk": {
+        "raw": 50.0,
+        "robust": 50.0,
+        "prev_raw": null,
+        "delta": null,
+        "status": "NEUTRAL"
+      },
+      "bank_opportunity": {
+        "raw": 50.0,
+        "robust": 50.0,
+        "prev_raw": null,
+        "delta": null,
+        "status": "NEUTRAL"
+      }
+    },
+    "event_count": 0
+  }
+]
