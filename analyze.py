@@ -29,6 +29,17 @@ SYSTEM_RULE = (
     "이 뉴스가 한국 은행과 사실상 무관하면 include_in_index를 false로 하라."
 )
 
+_BLK = {
+    "type": "object",
+    "properties": {
+        "direction": {"type": "integer"},
+        "importance": {"type": "integer"},
+        "confidence": {"type": "number"},
+    },
+    "required": ["direction", "importance", "confidence"],
+}
+
+# Gemini structured output은 $ref/$defs를 지원하지 않아 전부 인라인으로 풀어씀.
 RESPONSE_SCHEMA = {
     "type": "object",
     "properties": {
@@ -37,24 +48,13 @@ RESPONSE_SCHEMA = {
         "interpretation_ko": {"type": "string"},
         "verification_ko": {"type": "string"},
         "include_in_index": {"type": "boolean"},
-        "personal": {"$ref": "#/$defs/blk"},
-        "corporate": {"$ref": "#/$defs/blk"},
-        "bank_risk": {"$ref": "#/$defs/blk"},
-        "bank_opportunity": {"$ref": "#/$defs/blk"},
+        "personal": _BLK,
+        "corporate": _BLK,
+        "bank_risk": _BLK,
+        "bank_opportunity": _BLK,
     },
     "required": ["title_ko", "fact_ko", "interpretation_ko", "verification_ko",
                  "include_in_index", "personal", "corporate", "bank_risk", "bank_opportunity"],
-    "$defs": {
-        "blk": {
-            "type": "object",
-            "properties": {
-                "direction": {"type": "integer"},
-                "importance": {"type": "integer"},
-                "confidence": {"type": "number"},
-            },
-            "required": ["direction", "importance", "confidence"],
-        }
-    },
 }
 
 
@@ -89,6 +89,9 @@ def _call_gemini(api_key: str, model: str, prompt: str) -> dict:
                       data=json.dumps(body), timeout=60)
     if r.status_code == 404:
         raise FileNotFoundError(f"model {model} not found")
+    if r.status_code >= 400:
+        # 실패 원인을 로그에 그대로 남겨 다음에 바로 진단 가능하게 함.
+        raise RuntimeError(f"gemini {r.status_code}: {r.text[:300]}")
     r.raise_for_status()
     data = r.json()
     text = data["candidates"][0]["content"]["parts"][0]["text"]
@@ -120,10 +123,13 @@ def analyze_one(api_key: str, news: dict) -> dict:
                 return res
             except FileNotFoundError as e:
                 last_err = str(e)
+                print(f"[analyze] {model} 없음 → 다음 모델로: {last_err[:120]}")
                 break  # 다음 모델로
             except Exception as e:
                 last_err = str(e)
+                print(f"[analyze] {model} 시도 {attempt+1} 실패: {last_err[:200]}")
                 time.sleep(1.5)
+    print(f"[analyze] 전체 폴백 — 마지막 에러: {last_err[:200]}")
     return _neutral(last_err[:80], news)
 
 
