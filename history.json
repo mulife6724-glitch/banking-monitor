@@ -6,29 +6,29 @@
       "personal": {
         "raw": 50.0,
         "robust": 50.0,
-        "prev_raw": null,
-        "delta": null,
+        "prev_raw": 50.0,
+        "delta": 0.0,
         "status": "NEUTRAL"
       },
       "corporate": {
         "raw": 50.0,
         "robust": 50.0,
-        "prev_raw": null,
-        "delta": null,
+        "prev_raw": 50.0,
+        "delta": 0.0,
         "status": "NEUTRAL"
       },
       "bank_risk": {
         "raw": 50.0,
         "robust": 50.0,
-        "prev_raw": null,
-        "delta": null,
+        "prev_raw": 50.0,
+        "delta": 0.0,
         "status": "NEUTRAL"
       },
       "bank_opportunity": {
         "raw": 50.0,
         "robust": 50.0,
-        "prev_raw": null,
-        "delta": null,
+        "prev_raw": 50.0,
+        "delta": 0.0,
         "status": "NEUTRAL"
       }
     },
