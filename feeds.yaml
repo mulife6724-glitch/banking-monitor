@@ -1,0 +1,47 @@
+# RSS 뉴스 피드 목록 (한국 + 글로벌 혼합).
+# 언어 상관없이 수집하고, 화면·요약은 Gemini가 전부 한국어로 바꿔줌.
+# 나중에 자유롭게 추가/삭제/on-off 가능 — 이 파일만 고치면 됨(프로세스 안 깨짐).
+#
+# tier: OFFICIAL > PRIMARY_CORPORATE > WIRE > MAJOR_MEDIA > SECONDARY
+#   (출처 등급이 높을수록 근거충분도·신뢰도에 유리)
+# enabled: false 로 두면 그 피드는 건너뜀.
+# 어떤 피드가 죽어도 나머지로 계속 돌아감(안 터짐).
+
+feeds:
+  # ── 한국 ──────────────────────────────
+  - name: 연합뉴스 경제
+    url: https://www.yna.co.kr/rss/economy.xml
+    tier: MAJOR_MEDIA
+    lang: ko
+    enabled: true
+
+  - name: 한국경제 경제
+    url: https://www.hankyung.com/feed/economy
+    tier: MAJOR_MEDIA
+    lang: ko
+    enabled: true
+
+  - name: 연합뉴스 시장
+    url: https://www.yna.co.kr/rss/market.xml
+    tier: MAJOR_MEDIA
+    lang: ko
+    enabled: true
+
+  # ── 글로벌 ────────────────────────────
+  - name: 미국 연준(Fed) 보도자료
+    url: https://www.federalreserve.gov/feeds/press_all.xml
+    tier: OFFICIAL
+    lang: en
+    enabled: true
+
+  - name: CNBC Economy
+    url: https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258
+    tier: MAJOR_MEDIA
+    lang: en
+    enabled: true
+
+  - name: CNBC Finance
+    url: https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664
+    tier: MAJOR_MEDIA
+    lang: en
+    enabled: true
