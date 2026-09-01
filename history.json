@@ -453,5 +453,40 @@
       }
     },
     "event_count": 0
+  },
+  {
+    "date": "2026-09-02",
+    "sufficiency": 0.0,
+    "indices": {
+      "personal": {
+        "raw": 50.0,
+        "robust": 50.0,
+        "prev_raw": 50.0,
+        "delta": 0.0,
+        "status": "NEUTRAL"
+      },
+      "corporate": {
+        "raw": 50.0,
+        "robust": 50.0,
+        "prev_raw": 50.0,
+        "delta": 0.0,
+        "status": "NEUTRAL"
+      },
+      "bank_risk": {
+        "raw": 50.0,
+        "robust": 50.0,
+        "prev_raw": 50.0,
+        "delta": 0.0,
+        "status": "NEUTRAL"
+      },
+      "bank_opportunity": {
+        "raw": 50.0,
+        "robust": 50.0,
+        "prev_raw": 50.0,
+        "delta": 0.0,
+        "status": "NEUTRAL"
+      }
+    },
+    "event_count": 0
   }
 ]
